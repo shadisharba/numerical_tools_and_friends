@@ -1,0 +1,1 @@
+documentation_docs\make.bat clean && documentation_docs\make.bat html

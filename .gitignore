@@ -1,4 +1,8 @@
 
 .env_local
 
-.idea/
+.idea
+
+__pycache__
+
+documentation_docs/build/
