@@ -1,5 +1,5 @@
 # Instructions to build documentation from this repository
-
+0. check [Carol Willing - Practical Sphinx - PyCon 2018] (https://www.youtube.com/watch?v=0ROZRNZkPS8)
 1. modified from [sphinx-doc-tutorial](https://git.opendfki.de/dinesh_krishna.natarajan/sphinx-doc-tutorial)
 2. Install the following packages using `pip`.
    ```
