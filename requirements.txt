@@ -1,0 +1,8 @@
+sphinx
+livereload
+myst-parser
+recommonmark
+nbsphinx
+sphinx_rtd_theme
+pandoc
+requests
