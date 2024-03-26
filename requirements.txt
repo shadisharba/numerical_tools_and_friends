@@ -1,3 +1,4 @@
+python-dotenv
 sphinx
 livereload
 myst-parser
@@ -12,3 +13,4 @@ unittest2
 argparse
 tk
 coverage
+psycopg2
