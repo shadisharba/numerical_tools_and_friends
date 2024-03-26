@@ -8,3 +8,5 @@ __pycache__
 documentation_docs/build/
 
 *.pdf
+
+.coverage

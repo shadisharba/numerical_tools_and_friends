@@ -11,3 +11,4 @@ pytest-mock
 unittest2
 argparse
 tk
+coverage
