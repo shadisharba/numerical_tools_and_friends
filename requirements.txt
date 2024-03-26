@@ -7,4 +7,6 @@ sphinx_rtd_theme
 pandoc
 requests
 pytest
+pytest-mock
 unittest2
+argparse
