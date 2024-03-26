@@ -6,3 +6,5 @@ nbsphinx
 sphinx_rtd_theme
 pandoc
 requests
+pytest
+unittest2
