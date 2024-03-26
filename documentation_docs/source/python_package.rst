@@ -1,5 +1,5 @@
-submodule package
-=================
+python\_package package
+=======================
 Introduction
 ------------
 
@@ -13,7 +13,7 @@ This is the submodule package with its own module(s).
 
    A subpackage inside a package `(Source) <https://www.carrierbagshop.co.uk/Images/Ecommerce/Standard/SB-SINBXLRG.jpg>`_.
 
-.. automodule:: submodule
+.. automodule:: python_package
    :members:
    :undoc-members:
    :show-inheritance:
@@ -21,10 +21,10 @@ This is the submodule package with its own module(s).
 Submodules
 ----------
 
-submodule.functions module
---------------------------
+python\_package.functions module
+--------------------------------
 
-.. automodule:: submodule.functions
+.. automodule:: python_package.functions
    :members:
    :undoc-members:
    :show-inheritance:

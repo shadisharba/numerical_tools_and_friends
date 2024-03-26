@@ -1,7 +1,7 @@
-documentation_utils
+python_library
 ===================
 
-This page lists all the modules and submodules in the `documentation_utils/` directory.
+This page lists all the modules and submodules in the `python_library/` directory.
 
 .. figure:: images/package.png
    :alt: open package
@@ -17,4 +17,4 @@ This page lists all the modules and submodules in the `documentation_utils/` dir
 
    arithmetic
    operations
-   submodule
+   python_package

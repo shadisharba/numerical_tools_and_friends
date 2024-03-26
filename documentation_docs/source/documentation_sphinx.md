@@ -81,7 +81,7 @@ To create your own documentation from scratch, follow the instructions below.
     # documentation root, use os.path.abspath to make it absolute, like shown here.
     import os
     import sys
-    sys.path.insert(0, os.path.abspath('../../documentation_utils'))
+    sys.path.insert(0, os.path.abspath('../../python_library'))
     ```
  * In the `docs/source/conf.py` file, add 'sphinx.ext.autodoc' and other necessary extensions to the extensions list.
 
@@ -99,22 +99,22 @@ To create your own documentation from scratch, follow the instructions below.
 ## Step 4: Configure the `.rst` files
  * The 'reStructured Text' files indicate the contents of the documentation. [Here](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html) is a primer for the *reStructuredText* markup language. 
  * The `index.rst` acts as the main file (equivalent to a Latex main file). The contents of the documentation can be added directly to the `index.rst` file or individual `.rst` files can be created and then referenced in the `index.rst` file. Each `.rst` file gets its own webpage.
- * Documentation for the modules present in the `documentation_utils/arithmetic.py` and `documentation_utils/operations.py` can be automatically generated using the [`sphinx-apidoc`](https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html) command. From the `docs/` directory, the following command can be used to automatically generate the `.rst` files for the modules in `documentation_utils/` directory. To recursively generate the `.rst` files for the submodules inside the `documentation_utils/` folder, simply create an `__init__.py` file inside the submodule directories.
+ * Documentation for the modules present in the `python_library/arithmetic.py` and `python_library/operations.py` can be automatically generated using the [`sphinx-apidoc`](https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html) command. From the `docs/` directory, the following command can be used to automatically generate the `.rst` files for the modules in `python_library/` directory. To recursively generate the `.rst` files for the submodules inside the `python_library/` folder, simply create an `__init__.py` file inside the submodule directories.
   
- `sphinx-apidoc -M -o docs/source/ utils/`
+ `sphinx-apidoc -M -o docs/source/ python_library/`
    *  The `-o` argument points to the output directory `source/`. 
    *  The `-M` option lists the modules before the submodules. 
    ```
-   $ sphinx-apidoc -M -o docs/source/ utils/
+   $ sphinx-apidoc -M -o docs/source/ python_library/
    Creating file docs/source/arithmetic.rst.
    Creating file docs/source/operations.rst.
    Creating file docs/source/submodule.rst.
    Creating file docs/source/modules.rst.
    ```
- * The `modules.rst` file includes a Table of Contents which lists all the python scripts in the `documentation_utils/` directory. Each python script leads to an individual `.rst` file for that script. 
+ * The `modules.rst` file includes a Table of Contents which lists all the python scripts in the `python_library/` directory. Each python script leads to an individual `.rst` file for that script. 
    ```
-   utils
-   =====
+   python_library
+   ==============
 
    .. toctree::
       :maxdepth: 4
