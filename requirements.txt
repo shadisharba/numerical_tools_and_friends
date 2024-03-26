@@ -14,3 +14,4 @@ argparse
 tk
 coverage
 psycopg2
+fire # https://github.com/google/python-fire
