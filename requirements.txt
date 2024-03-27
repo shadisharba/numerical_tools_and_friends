@@ -15,3 +15,9 @@ tk
 coverage
 psycopg2
 fire # https://github.com/google/python-fire
+fastapi
+uvicorn
+mlflow
+chardet
+scikit-learn
+numpy
