@@ -21,3 +21,4 @@ mlflow
 chardet
 scikit-learn
 numpy
+arrow # dates & times
