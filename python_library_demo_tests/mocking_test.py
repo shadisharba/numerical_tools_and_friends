@@ -1,13 +1,13 @@
 import sys
 import pytest
 from unittest.mock import patch
-from python_library.sample_file import dummy_function
-from python_library.cli_argparse import cli_command
+from python_library_demo.python_sample_module import dummy_function
+from python_library_demo.cli_argparse import cli_command
 
 
 def test_mocking_function(mocker):
     # Mocking can patch any function within the codebase, as long you define the full dotted path.
-    mocker.patch("python_library.sample_file.load_data", return_value=2)
+    mocker.patch("python_library_demo.python_sample_module.load_data", return_value=2)
     assert dummy_function() == 2, "Value should be mocked"
 
 

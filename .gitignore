@@ -5,7 +5,9 @@
 
 __pycache__
 
-documentation_docs/build/
+.pytest_cache
+
+*documentation*/build/
 
 *.pdf
 
