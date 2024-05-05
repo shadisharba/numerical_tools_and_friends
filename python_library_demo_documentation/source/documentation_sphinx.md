@@ -13,8 +13,8 @@
    pip install -r requirements.txt
    ```
 3. `pandoc` is needed to generate documentation from Jupyter Notebooks using Sphinx. Installation instructions can be found [here](https://pandoc.org/installing.html).  
-4. Use `documentation_build.bat` to generate HTML documentation.
-5. The generated documentation can be found in the `documentation_docs/build/html/` directory. 
+4. Use `python_documentation.bat` to generate HTML documentation.
+5. The generated documentation can be found in the `docs/build/html/` directory. 
 6. An online demo of the generated [HTML docs](https://www.dfki.uni-kl.de/~natarajan/sphinx-doc-tutorial/index.html). 
 
 # Instructions to generate Python documentation using Sphinx
@@ -81,7 +81,7 @@ To create your own documentation from scratch, follow the instructions below.
     # documentation root, use os.path.abspath to make it absolute, like shown here.
     import os
     import sys
-    sys.path.insert(0, os.path.abspath('../../python_library'))
+    sys.path.insert(0, os.path.abspath('../../python_library_demo'))
     ```
  * In the `docs/source/conf.py` file, add 'sphinx.ext.autodoc' and other necessary extensions to the extensions list.
 
@@ -101,11 +101,11 @@ To create your own documentation from scratch, follow the instructions below.
  * The `index.rst` acts as the main file (equivalent to a Latex main file). The contents of the documentation can be added directly to the `index.rst` file or individual `.rst` files can be created and then referenced in the `index.rst` file. Each `.rst` file gets its own webpage.
  * Documentation for the modules present in the `python_library/arithmetic.py` and `python_library/operations.py` can be automatically generated using the [`sphinx-apidoc`](https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html) command. From the `docs/` directory, the following command can be used to automatically generate the `.rst` files for the modules in `python_library/` directory. To recursively generate the `.rst` files for the submodules inside the `python_library/` folder, simply create an `__init__.py` file inside the submodule directories.
   
- `sphinx-apidoc -M -o docs/source/ python_library/`
+ `sphinx-apidoc -M -o .\python_library_demo_documentation\source\ .\python_library_demo\`
    *  The `-o` argument points to the output directory `source/`. 
    *  The `-M` option lists the modules before the submodules. 
    ```
-   $ sphinx-apidoc -M -o docs/source/ python_library/
+   $ sphinx-apidoc -M -o .\python_library_demo_documentation\source\ .\python_library_demo\
    Creating file docs/source/arithmetic.rst.
    Creating file docs/source/operations.rst.
    Creating file docs/source/submodule.rst.

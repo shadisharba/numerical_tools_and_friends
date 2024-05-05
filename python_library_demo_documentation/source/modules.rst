@@ -1,7 +1,7 @@
-python_library
+python_library_demo
 ===================
 
-This page lists all the modules and submodules in the `python_library/` directory.
+This page lists all the modules and submodules in the `python_library_demo/` directory.
 
 .. figure:: images/package.png
    :alt: open package
@@ -13,8 +13,9 @@ This page lists all the modules and submodules in the `python_library/` director
 
 .. toctree::
    :maxdepth: 4
-   :caption: Contents
 
    arithmetic
+   cli_argparse
    operations
    python_package
+   python_sample_module

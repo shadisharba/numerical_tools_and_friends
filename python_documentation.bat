@@ -1,0 +1,1 @@
+python_library_demo_documentation\make.bat clean && python_library_demo_documentation\make.bat html
