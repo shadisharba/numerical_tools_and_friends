@@ -1,4 +1,4 @@
-name: Build and test
+name: CI/CD Tests
 
 on: [push]
 
@@ -14,15 +14,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.10
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
     - name: Add conda to system path
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
-    # - name: Install dependencies
-    - uses: conda-incubator/setup-miniconda@v2
+    - uses: conda-incubator/setup-miniconda@v3
       with:
         activate-environment: anaconda-client-env
         environment-file: python_conda_environment.yml
@@ -30,17 +29,18 @@ jobs:
     - run: |
         conda info
         conda list
-      # run: |
-      #   conda create --name numtools python=3.11
-      #   $CONDA/bin activate numtools
-      #   pip install -r requirements.txt
-    # - name: Lint with flake8
-    #   run: |
-    #     conda install flake8
-    #     # stop the build if there are Python syntax errors or undefined names
-    #     flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-    #     # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-    #     flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Run test coverage
+      run: python -m pytest --cov=.
     - name: Test with pytest
       run: |
-        python -m pytest --cov
+        python -m pytest --cov --cov-report=xml:coverage.xml
+        # coverage https://smarie.github.io/python-genbadge/
+        # https://github.com/marketplace/actions/coverage-badge
+        genbadge coverage -i coverage.xml
+    - name: Archive coverage badge
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-badge
+        path: ./coverage-badge.svg
+        compression-level: 0 # no compression
+        overwrite: true
