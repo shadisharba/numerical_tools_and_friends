@@ -81,8 +81,8 @@ jobs:
           fixes:
             - "/home/runner/work/shadisharba/numerical_tools_and_friends/::" # Correct paths
           EOF
-      - name: \[not on TAG\] Publish coverage report
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads')
-        uses: codecov/codecov-action@v1
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./reports/coverage/coverage.xml
