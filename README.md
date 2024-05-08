@@ -1,8 +1,10 @@
 # Numerical tools and friends
 
-![CI/CD Tests](https://github.com/shadisharba/numerical_tools_and_friends/actions/workflows/python-package-conda.yml/badge.svg)
 
-[//]: # (![Coverage Status]&#40;coverage-badge.svg&#41;)
+[![CI/CD Tests](https://github.com/shadisharba/numerical_tools_and_friends/actions/workflows/python-package-conda.yml/badge.svg)](https://github.com/shadisharba/numerical_tools_and_friends/actions/workflows/python-package-conda.yml)
+
+[![GitHub stars](https://img.shields.io/github/stars/shadisharba/numerical_tools_and_friends.svg)](https://github.com/shadisharba/numerical_tools_and_friends/stargazers)
+
 
 This repository serves as a comprehensive toolkit showcasing a variety of numerical methods and data processing pipelines. It’s designed to be a personal resource, offering practical tools and providing experimental testing for a wide range of methods in machine learning, data engineering, and data science.
 
