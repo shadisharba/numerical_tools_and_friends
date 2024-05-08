@@ -5,6 +5,9 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/shadisharba/numerical_tools_and_friends.svg)](https://github.com/shadisharba/numerical_tools_and_friends/stargazers)
 
+ [![Coverage Status](https://shadisharba.github.io/numerical_tools_and_friends/reports/coverage/coverage-badge.svg?dummy=8484744)](https://shadisharba.github.io/numerical_tools_and_friends/reports/coverage/index.html)
+ 
+ [![codecov](https://codecov.io/gh/shadisharba/numerical_tools_and_friends/branch/main/graph/badge.svg)](https://codecov.io/gh/shadisharba/numerical_tools_and_friends)
 
 This repository serves as a comprehensive toolkit showcasing a variety of numerical methods and data processing pipelines. It’s designed to be a personal resource, offering practical tools and providing experimental testing for a wide range of methods in machine learning, data engineering, and data science.
 
