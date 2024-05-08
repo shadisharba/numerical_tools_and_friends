@@ -34,8 +34,6 @@ jobs:
     - name: Test with pytest
       run: |
         python -m pytest --cov --cov-report=xml:./reports/coverage/coverage.xml
-        # coverage https://smarie.github.io/python-genbadge/
-        # https://github.com/marketplace/actions/coverage-badge
         genbadge coverage -o ./reports/coverage/coverage-badge.svg
     - name: Archive coverage badge
       uses: actions/upload-artifact@v4
@@ -47,42 +45,24 @@ jobs:
   publish_release:
     needs: build-linux
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     steps:
-      - name: GitHub context to debug conditional steps
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
-
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # so that gh-deploy works
 
       # retrieve the reports generated previously
       - name: Retrieve reports
-        uses: actions/download-artifact@master
+        uses: actions/download-artifact@v4.1.7
         with:
           name: reports_dir
           path: ./reports
 
-#      # Publish the doc and test reports
-#      - name: \[not on TAG\] Publish documentation, tests and coverage reports
-#        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads')  # startsWith(matrix.os,'ubuntu')
-#        shell: bash -l {0}  # so that conda works
-#        run: nox -s publish
-
-      # Publish coverage report
-      - name: \[not on TAG\] Create codecov.yaml with correct paths
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads')
-        shell: bash
-        run: |
-          cat << EOF > codecov.yml
-          # codecov.yml
-          fixes:
-            - "/home/runner/work/shadisharba/numerical_tools_and_friends/::" # Correct paths
-          EOF
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./reports/coverage/coverage.xml
+
+#      - name: Run flake8 analysis and generate corresponding badge
+#        shell: bash -l {0}  # so that conda works
+#        run: flake8

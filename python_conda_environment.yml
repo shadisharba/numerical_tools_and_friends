@@ -159,4 +159,5 @@ dependencies:
       - websockets==12.0
       - werkzeug==3.0.3
       - zipp==3.18.1
+      - pytest-json-report==1.5.0
 prefix: C:\Users\sha79396\.conda\envs\numtools
