@@ -25,6 +25,7 @@ pip install -r requirements.txt
 
 ## Python Swiss Army knife (SWAK)
 - Using secrets
+- Command Line Interface (CLI)
 
 ## Machine learning 
 - [MLflow](https://mlflow.org/)
