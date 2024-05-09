@@ -9,12 +9,12 @@ This repository serves as a comprehensive toolkit showcasing a variety of numeri
 
 
 # Running the code localy in conda environment
-`conda create --name num_tools --clone base`
+`conda create --name numtools --clone base`
 or
 ```
-conda create --name num_tools python==3.12
-conda activate num_tools
-pip install -r requirements.txt
+conda create --name numtools python==3.11.9
+conda activate numtools
+pip install -r python_env_pip.txt
 ```
 
 # Examples
@@ -24,10 +24,15 @@ pip install -r requirements.txt
 - `python_coverage.bat` - a simple example of how to run tests with coverage in python
 
 ## Python Swiss Army knife (SWAK)
+Demo scripts include but not limited to:
 - Using secrets
+- Virtual environments
 - Command Line Interface (CLI)
 - Graphical User Interface (GUI)
+- Application Programming Interface (API)
+- Date and time handling
 
 ## Machine learning 
+Demo scripts include but not limited to:
 - [MLflow](https://mlflow.org/)
 
