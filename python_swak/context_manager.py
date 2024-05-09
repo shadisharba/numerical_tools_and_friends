@@ -1,10 +1,8 @@
 import contextlib
-import psycopg2
 import sys
 from io import StringIO
-from dotenv import load_dotenv, dotenv_values
 
-with open("../requirements.txt", "r") as file:
+with open("../python_env_pip.txt", "r") as file:
     data = file.read()
     # file is closed after the block of code is executed
 
@@ -33,7 +31,7 @@ class SampleContextVariable:
         pass
 
 
-with open_file("../requirements.txt") as file:
+with open_file("../python_env_pip.txt") as file:
     print(file)
     data = file.read()
 
@@ -41,44 +39,6 @@ print()
 
 with SampleContextVariable() as variable:
     print(variable)
-
-# install (PostgreSQL)[https://www.postgresql.org/download/]
-secrets = dotenv_values("../.env_local")
-db_params = dict(
-    host="localhost", database="sample_db", user="postgres", password=secrets["DB_PASSWORD"]
-)
-
-
-@contextlib.contextmanager
-def database(params):
-    print("Connecting to PostgreSQL database...")
-    # Setup script
-    conn = psycopg2.connect(user=params['user'], password=params['password'], host=params['host'])
-    conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
-    cur = conn.cursor()
-
-    print("Dropping existing database and creating a new one.")
-    cur.execute(f"DROP DATABASE IF EXISTS {params['database']};")
-    cur.execute(f"CREATE DATABASE {params['database']};")
-    print("Database created.")
-    cur.close()
-    conn.close()
-
-    try:
-        conn = psycopg2.connect(**params)
-        cur = conn.cursor()
-        cur.execute("CREATE TABLE IF NOT EXISTS table1 (id serial PRIMARY KEY, num integer, data varchar);")
-        print("returning DB cursor.")
-        yield cur
-    finally:
-        # Teardown script
-        cur.close()
-        conn.close()
-        print("Database connection closed.")
-
-
-with database(db_params) as db_conn:
-    data = db_conn.execute("SELECT * FROM table1")
 
 
 # capture print statements (e.g. from external Python libraries)
