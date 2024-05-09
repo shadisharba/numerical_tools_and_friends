@@ -9,7 +9,7 @@ def start_gui():
     root.withdraw()
     mb.showinfo('Test Message',
                 'Everything works! \n This is a test message from '
-                'python_ci_cd_demo!')
+                'python_tkinter_demo!')
     version_num = 0.1
     print('The version of the called programm is ' + str(version_num))
     root.destroy()
