@@ -22,5 +22,10 @@ pip install -r requirements.txt
 - `python_library_demo` - a simple example of how to create a python library
 - `python_tests.bat` - a simple example of how to run tests in python
 - `python_coverage.bat` - a simple example of how to run tests with coverage in python
+
+## Python Swiss Army knife (SWAK)
+- Using secrets
+
 ## Machine learning 
 - [MLflow](https://mlflow.org/)
+

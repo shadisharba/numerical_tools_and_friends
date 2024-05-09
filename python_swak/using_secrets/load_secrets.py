@@ -36,7 +36,7 @@ def read_secrets_from_json():
         except Exception as e:
             print("Error: ", e)
 
-    print(get_value_from_json("secrets.json", "db", "host"))
+    print(get_value_from_json(".env.json", "db", "host"))
     print('-' * 50)
 
 
