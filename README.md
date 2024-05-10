@@ -31,6 +31,7 @@ Demo scripts include but not limited to:
 - Graphical User Interface (GUI)
 - Application Programming Interface (API)
 - Date and time handling
+- Support vector machines (SVMs)
 
 ## Machine learning 
 Demo scripts include but not limited to:
