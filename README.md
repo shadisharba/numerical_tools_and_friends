@@ -32,6 +32,7 @@ Demo scripts include but not limited to:
 - Application Programming Interface (API)
 - Date and time handling
 - Support vector machines (SVMs)
+- K-means and GaussianMixture clustering
 
 ## Machine learning 
 Demo scripts include but not limited to:
