@@ -1,1 +1,0 @@
-python h5ll.py --name=mytestfile.h5
