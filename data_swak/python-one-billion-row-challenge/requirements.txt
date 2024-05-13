@@ -1,0 +1,8 @@
+pandas
+polars
+numpy
+tqdm
+pyarrow
+duckdb
+dask
+dask[dataframe]
