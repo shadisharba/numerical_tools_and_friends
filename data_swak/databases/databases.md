@@ -45,3 +45,8 @@ PostgreSQL also known as Postgres, is a free and open-source relational database
 [psql terminal](https://www.postgresql.org/docs/9.2/app-psql.html)
 Once you’re connected, you can list all tables in the current database with the command: \dt.
 
+
+
+## check
+- Apache Drill is an open-source software framework that supports data-intensive distributed applications for interactive analysis of large-scale datasets.
+- Presto (including PrestoDB, and PrestoSQL which was re-branded to Trino) is a distributed query engine for big data using the SQL query language. Its architecture allows users to query data sources such as Hadoop, Cassandra, Kafka, AWS S3, Alluxio, MySQL, MongoDB and Teradata, and allows use of multiple data sources within a query. Presto is community-driven open-source software released under the Apache License.
