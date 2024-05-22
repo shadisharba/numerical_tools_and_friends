@@ -1,4 +1,5 @@
 # write a python code that enquire https://www.gov.uk and look for an announcement with specified words
+# Beautiful Soup is a Python library for pulling data out of HTML and XML files
 
 import requests
 from bs4 import BeautifulSoup
