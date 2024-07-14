@@ -38,6 +38,20 @@ Demo scripts include but not limited to:
 Demo scripts include but not limited to:
 - [MLflow](https://mlflow.org/)
 
+- KMeans Clustering
+- DBSCAN Clustering
+- KNeighbors Classifier
+- SVC: Support Vector Classification
+- SVR: Support Vector Regression
+- Ridge Regression
+- Lasso Regression
+- Linear Regression
+- Logistic Regression
+- ElasticNet Regression
+- RandomForest Regressor
+
+Note: Regressors can be used as a classifier by changing the target variable to a binary variable. Classifiers that output probabilities or decision scores (continuous values) can be used directly as regression targets.
+
 ## Third-party Repos
 
 ### [Numerical Tours](https://github.com/gpeyre/numerical-tours)
