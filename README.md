@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/shadisharba/numerical_tools_and_friends/branch/main/graph/badge.svg)](https://codecov.io/gh/shadisharba/numerical_tools_and_friends)
 [![GitHub stars](https://img.shields.io/github/stars/shadisharba/numerical_tools_and_friends.svg)](https://github.com/shadisharba/numerical_tools_and_friends/stargazers)
 
-This repository serves as a comprehensive toolkit showcasing a variety of numerical methods and data processing pipelines. It’s designed to be a personal resource, offering practical tools and providing experimental testing for a wide range of methods in machine learning, data engineering, and data science.
+This repository serves as a comprehensive toolkit showcasing a variety of numerical methods and data processing pipelines. It is designed to be a personal resource, offering practical tools and providing experimental testing for a wide range of methods in machine learning, data engineering, and data science.
 
 
 # Running the code localy in conda environment
@@ -74,8 +74,7 @@ echo mathematical_tours_of_data_sciences>>.gitignore
 rm -rf automatic_and_symbolic_differentiation/symbolic_mat_diff0
 git clone https://github.com/mshvartsman/symbolic-mat-diff.git automatic_and_symbolic_differentiation/symbolic_mat_diff0
 echo automatic_and_symbolic_differentiation/symbolic_mat_diff0>>.gitignore
-```
-```
+
 rm -rf automatic_and_symbolic_differentiation/symbolic_mat_diff
 git clone https://github.com/aztennenbaum/symbolic-mat-diff.git automatic_and_symbolic_differentiation/symbolic_mat_diff
 echo automatic_and_symbolic_differentiation/symbolic_mat_diff>>.gitignore
@@ -86,9 +85,7 @@ echo automatic_and_symbolic_differentiation/symbolic_mat_diff>>.gitignore
 rm -rf languages/python/python_documentation_sphinx/sphinx_doc_tutorial
 git clone https://git.opendfki.de/dinesh_krishna.natarajan/sphinx-doc-tutorial.git languages/python/python_documentation_sphinx/sphinx_doc_tutorial
 echo languages/python/python_documentation_sphinx/sphinx_doc_tutorial>>.gitignore
-```
 
-```
 rm -rf languages/python/python_documentation_sphinx/python_sample_code
 git clone https://github.com/shunsvineyard/python-sample-code languages/python/python_documentation_sphinx/python_sample_code
 echo languages/python/python_documentation_sphinx/python_sample_code>>.gitignore
@@ -99,15 +96,11 @@ echo languages/python/python_documentation_sphinx/python_sample_code>>.gitignore
 rm -rf pi_arduino_projects/exploring_arduino_2nd_edition
 git clone https://github.com/sciguy14/Exploring-Arduino-2nd-Edition.git pi_arduino_projects/exploring_arduino_2nd_edition
 echo pi_arduino_projects/exploring_arduino_2nd_edition>>.gitignore
-```
 
-```
 rm -rf pi_arduino_projects/l293d_module_example
 git clone https://github.com/layadcircuits/L293D_module_example.git pi_arduino_projects/l293d_module_example
 echo pi_arduino_projects/l293d_module_example>>.gitignore
-```
 
-```
 rm -rf pi_arduino_projects/zhaojinghua_arduino
 git clone https://github.com/zhaojinghua/Arduino.git pi_arduino_projects/zhaojinghua_arduino
 echo pi_arduino_projects/zhaojinghua_arduino>>.gitignore
@@ -117,6 +110,7 @@ echo pi_arduino_projects/zhaojinghua_arduino>>.gitignore
 ### Finite Element Method (FEM)
 
 http://www.calculix.de/
+
 https://prepomax.fs.um.si/
 
 ```
