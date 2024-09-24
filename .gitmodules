@@ -1,0 +1,4 @@
+[submodule "python_swak"]
+	path = python_swak
+	url = git@github.com:shadisharba/python_swak.git
+	branch = main
