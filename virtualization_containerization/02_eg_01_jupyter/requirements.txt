@@ -1,0 +1,13 @@
+pytest==6.2.4
+termcolor==1.1.0
+tqdm==4.61.1
+progressbar2==4.0.0
+progressbar==2.5
+pre-commit==2.13.0
+setuptools==57.0.0
+nox==2021.6.12
+jupyter==1.0.0
+jupyterlab==3.0.18
+fire==0.4.0
+notebook==6.4.6
+joblib==1.1.0

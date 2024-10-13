@@ -1,0 +1,51 @@
+version: '3.3'
+services:
+# nextcloud
+    db_host:
+        image: linuxserver/mariadb
+        container_name: nextcloud-mariadb
+        volumes:
+            - ./dbconfig:/config
+            - /etc/localtime:/etc/localtime:ro
+        ports:
+            - 3306:3306
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - MYSQL_ROOT_PASSWORD=mypassword
+            - MYSQL_PASSWORD=mypassword
+            - MYSQL_DATABASE=nextcloud
+            - MYSQL_USER=nextcloud
+        restart: unless-stopped
+    nextcloud_app:
+        image: linuxserver/nextcloud
+        container_name: nextcloud-app
+        ports:
+            - 808:80  # http
+            - 444:443 # https
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - MYSQL_HOST=db_host
+        links:
+            - db_host
+        volumes:
+            - ./ncdata:/data
+            - ./ncconfig:/config
+        restart: unless-stopped
+        depends_on:
+            - db_host
+# dokuwiki1
+    dokuwiki:
+      image: linuxserver/dokuwiki
+      container_name: dokuwiki
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Europe/London
+      volumes:
+        - ./datafolder:/config
+      ports:
+        - 8081:80
+      #   - 443:443 #optional
+      restart: unless-stopped

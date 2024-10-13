@@ -1,0 +1,11 @@
+tls:
+  stores:
+    - default:
+      defaultCertificate:
+        certFile: ./exclude_openssl_tls/cert.pem
+        keyFile: ./exclude_openssl_tls/key.pem
+  certificates:
+    - certFile: ./exclude_openssl_tls/cert.pem
+      keyFile: ./exclude_openssl_tls/key.pem
+      stores:
+      - default

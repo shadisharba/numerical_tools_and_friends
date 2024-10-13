@@ -26,3 +26,5 @@ mathematical_tours_of_data_sciences
 data_swak/extract_transform_load_etl_elt/logs/
 
 *exclude_*
+
+*.docx

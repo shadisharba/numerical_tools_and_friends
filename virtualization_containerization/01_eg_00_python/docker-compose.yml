@@ -1,0 +1,17 @@
+services:
+  run_python_indocker:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: my_custom_image_name
+    container_name: my_custom_container_name
+    # 
+    environment:
+      - DISPLAY=${DISPLAY}  # docker run -e DISPLAY=$DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix  # docker run -v /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev/dri:/dev/dri  # docker run -v /dev/dri:/dev/dri
+    network_mode: host  # docker run --net=host
+    ipc: host  # docker run --ipc=host
+    stdin_open: true  # docker run -i
+    tty: true  # docker run -t

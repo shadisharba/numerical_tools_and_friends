@@ -1,0 +1,95 @@
+# https://traefik.io/blog/traefik-2-0-docker-101-fc2893944b9d/
+
+version: '3.3'
+services:
+    traefik:
+      image: traefik
+      container_name: "traefik"
+      command:
+        - "--log.level=DEBUG"
+        - "--api.insecure=true" # Don't do that in production
+        - "--providers.docker=true"
+        - "--providers.docker.exposedbydefault=true"
+        - "--entrypoints.web.address=:80"
+        - "--entrypoints.websecure.address=:443"
+        # - "--certificatesresolvers.le.acme.email=my@email.com"
+        # - "--certificatesresolvers.le.acme.storage=/acme.json"
+        # - "--certificatesresolvers.le.acme.tlschallenge=true"
+      ports:
+        - "8080:8080"
+        - "443:443"
+        - "80:80"
+      volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock:ro"
+        - ./tls/:/certs:ro
+# nextcloud
+    db_host:
+        image: linuxserver/mariadb
+        container_name: nextcloud-mariadb
+        volumes:
+            - ./dbconfig:/config
+            - /etc/localtime:/etc/localtime:ro
+        ports:
+            - 3306:3306
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - MYSQL_ROOT_PASSWORD=mypassword
+            - MYSQL_PASSWORD=mypassword
+            - MYSQL_DATABASE=nextcloud
+            - MYSQL_USER=nextcloud
+        restart: unless-stopped
+    nextcloud_app:
+        image: linuxserver/nextcloud
+        container_name: nextcloud-app
+        # direct access, no reverse proxy
+        # ports:
+        #     - 80:80
+        #     - 443:443
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - MYSQL_HOST=db_host
+        links:
+            - db_host
+        volumes:
+            - ./ncdata:/data
+            - ./ncconfig:/config
+        restart: unless-stopped
+        labels:
+          # - --port=443 # for a service that listens on 443labels
+          - "traefik.enable=true"
+          - "traefik.http.routers.nextcloud_app.rule=Host(`nextcloud.localhost`)" # http://nextcloud.localhost/
+          # - "traefik.http.routers.nextcloud_app.rule=Host(`localhost`) && PathPrefix(`/nextcloud`)" # http://localhost/nextcloud
+          # - "traefik.http.routers.nextcloud_app.rule=Host(`nextcloud.localhost`) || (Host(`localhost`) && PathPrefix(`/nextcloud`))"
+
+          - "traefik.http.routers.nextcloud_app.entrypoints=web"
+          # - "traefik.http.routers.nextcloud_app.tls=true"
+          # - "traefik.http.services.nextcloud_app.loadbalancer.server.port=443"
+          # To ensure that Nextcloud receives requests without the /nextcloud prefix (which it might not be expecting)
+          - "traefik.http.middlewares.nextcloud-stripprefix.stripprefix.prefixes=/nextcloud"
+          - "traefik.http.routers.nextcloud_app.middlewares=nextcloud-stripprefix"
+        depends_on:
+            - db_host
+            - traefik
+# dokuwiki1
+    dokuwiki:
+      image: linuxserver/dokuwiki
+      container_name: dokuwiki
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Europe/London
+      volumes:
+        - ./datafolder:/config
+      # ports:
+      #   - 80:80
+      #   - 443:443
+      restart: unless-stopped
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.dokuwiki.rule=Host(`dokuwiki.localhost`)" # http://dokuwiki.localhost/
+        - "traefik.http.routers.dokuwiki.entrypoints=web"
+        # - "traefik.http.routers.dokuwiki.tls=true"
+        # - traefik.http.routers.dokuwiki.middlewares=auth
+        # - traefik.http.routers.dokuwiki.tls.certresolver=le

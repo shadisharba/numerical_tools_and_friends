@@ -1,0 +1,1 @@
+docker run -p 8888:8888 -v ./src:/home/jovyan/work jupyter/base-notebook
