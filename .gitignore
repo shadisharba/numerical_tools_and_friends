@@ -28,3 +28,7 @@ data_swak/extract_transform_load_etl_elt/logs/
 *exclude_*
 
 *.docx
+
+*.zip
+
+virtualization_containerization/docker_microservices/proxmox

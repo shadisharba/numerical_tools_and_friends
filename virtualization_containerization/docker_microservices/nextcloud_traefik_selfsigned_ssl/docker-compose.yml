@@ -1,0 +1,96 @@
+services:
+    # traefik.docker.localhost
+    traefik_app:
+        image: traefik:v2.5
+        container_name: "traefik"
+        command:
+        - "--log.level=DEBUG"
+        - "--api.insecure=true" # TODO: Don't do that in production
+        - "--providers.docker=true"
+        - "--providers.docker.exposedbydefault=true" # TODO: remove in production
+        - "--providers.file.directory=/etc/traefik/dynamic_conf"
+        - "--providers.file.watch=true"
+        - "--entrypoints.web.address=:80"
+        - "--entrypoints.websecure.address=:443"
+        - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+        - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+        labels:
+        - "traefik.http.routers.traefik_app.tls=true"
+        - "traefik.http.routers.traefik_app.entrypoints=websecure"
+        - "traefik.http.routers.traefik_app.rule=Host(`traefik.localhost`)" # https://traefik.localhost/
+        - "traefik.http.services.traefik_app.loadbalancer.server.port=8080" # port is different than 80
+        ports:
+        # - "8080:8080"
+        - "443:443"
+        - "80:80"
+        volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock:ro"
+        - ./certs:/etc/certs:ro
+        - ./tls.yml:/etc/traefik/dynamic_conf/conf.yml:ro
+        restart: unless-stopped
+
+    whoami_app:
+        image: traefik/whoami:v1.7.1
+        labels:
+        # Enable this container to be mapped by traefik https://docs.traefik.io/providers/docker/#exposedbydefault
+        - "traefik.enable=true"
+        - "traefik.http.routers.whoami_app.tls=true"
+        - "traefik.http.routers.whoami_app.entrypoints=websecure"
+        - "traefik.http.routers.whoami_app.rule=Host(`whoami.localhost`)" # https://whoami.localhost/
+
+        # add basic auth (user/password) to access the service
+        # - traefik.http.routers.whoami_app.middlewares=auth
+        # - "traefik.http.middlewares.auth.basicauth.users=user:password" # user/password
+        restart: unless-stopped
+        
+# nextcloud
+    db_host:
+        image: linuxserver/mariadb
+        container_name: nextcloud-mariadb
+        volumes:
+            - ./dbconfig:/config
+            - /etc/localtime:/etc/localtime:ro
+        ports:
+            - 3306:3306
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - MYSQL_ROOT_PASSWORD=mypassword
+            - MYSQL_PASSWORD=mypassword
+            - MYSQL_DATABASE=nextcloud
+            - MYSQL_USER=nextcloud
+        restart: unless-stopped
+
+    nextcloud_app:
+        image: linuxserver/nextcloud
+        container_name: nextcloud-app
+        # direct access, no reverse proxy
+        # ports:
+        #     - 80:80
+        #     - 443:443
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - MYSQL_HOST=db_host
+        links:
+            - db_host
+        volumes:
+            - ./ncdata:/data
+            - ./ncconfig:/config
+        restart: unless-stopped
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.nextcloud_app.tls=true"
+        - "traefik.http.routers.nextcloud_app.entrypoints=websecure"
+        - "traefik.http.routers.nextcloud_app.rule=Host(`nextcloud.localhost`)" # https://nextcloud.localhost/
+
+        # - "traefik.http.routers.nextcloud_app.rule=Host(`localhost`) && PathPrefix(`/nextcloud`)" # http://localhost/nextcloud
+        # - "traefik.http.routers.nextcloud_app.rule=Host(`nextcloud.localhost`) || (Host(`localhost`) && PathPrefix(`/nextcloud`))"
+
+        # - "traefik.http.services.nextcloud_app.loadbalancer.server.port=443"
+        # To ensure that Nextcloud receives requests without the /nextcloud prefix (which it might not be expecting)
+        - "traefik.http.middlewares.nextcloud-stripprefix.stripprefix.prefixes=/nextcloud"
+        - "traefik.http.routers.nextcloud_app.middlewares=nextcloud-stripprefix"
+        depends_on:
+        - traefik_app
+        - db_host
