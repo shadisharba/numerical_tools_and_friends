@@ -1,0 +1,6 @@
+# instead of pytest.ini
+[tool.pytest.ini_options]
+testpaths = "python_library_demo_tests"
+markers = [
+    "group1: description of group 1"
+]

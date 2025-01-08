@@ -1,4 +1,4 @@
-[submodule "python_swak"]
-	path = python_swak
+[submodule "python_custom_nb_lib"]
+	path = python_custom_nb_lib
 	url = git@github.com:shadisharba/python_swak.git
 	branch = main
