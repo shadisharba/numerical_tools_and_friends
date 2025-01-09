@@ -16,7 +16,10 @@ ARG WORKING_DIR="/workspaces/myproject/"
 ENV UV_VENV=$UV_VENV
 ENV WORKING_DIR=$WORKING_DIR
 
+# Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=True
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
 
 COPY --from=uv --chown=vscode: /uv /uvx /bin/
 RUN uv python install $PYTHON_VER
