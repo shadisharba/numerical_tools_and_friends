@@ -3,30 +3,32 @@ ARG DEBIAN_VER=bookworm
 
 FROM ghcr.io/astral-sh/uv:$UV_VER AS uv
 FROM mcr.microsoft.com/vscode/devcontainers/base:$DEBIAN_VER
+COPY --from=uv --chown=vscode: /uv /uvx /bin/
 
-RUN sudo apt update -qq && sudo apt install -qq -y x11-apps
 SHELL ["/bin/bash", "-c"]
 USER vscode
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG PYTHON_VER=3.13
-ARG UV_VENV="/home/vscode/.venv"
+ARG VIRTUAL_ENV="/home/vscode/.venv"
 ARG WORKING_DIR="/workspaces/01_eg_00_python/"
 
-ENV UV_VENV=$UV_VENV
+ENV VIRTUAL_ENV=$VIRTUAL_ENV
 ENV WORKING_DIR=$WORKING_DIR
-
+ENV activate="source $VIRTUAL_ENV/bin/activate"
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=True
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
 
-COPY --from=uv --chown=vscode: /uv /uvx /bin/
+RUN sudo apt update -qq && sudo apt install -qq -y x11-apps
 RUN uv python install $PYTHON_VER
-RUN echo 'alias activate="source $UV_VENV/bin/activate"' >> ~/.bashrc
+RUN uv venv $VIRTUAL_ENV
 
-COPY init_python.sh $WORKING_DIR
+COPY init_python* /
+COPY requirements.txt /
+RUN ./init_python_dep.sh
+
 WORKDIR $WORKING_DIR
 
-ENTRYPOINT ["./init_python.sh"]
-# ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/bash"]

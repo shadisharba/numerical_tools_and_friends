@@ -34,7 +34,8 @@
                 "kevinrose.vsc-python-indent",
                 "ms-python.python",
 				"ms-toolsai.jupyter",
-				"ms-vscode.atom-keybindings"
+				"ms-vscode.atom-keybindings",
+				"donjayamanne.python-extension-pack"
             ]
         }
     },

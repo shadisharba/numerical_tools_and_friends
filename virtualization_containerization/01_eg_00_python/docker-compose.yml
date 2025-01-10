@@ -9,10 +9,9 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix  # docker run -v /tmp/.X11-unix:/tmp/.X11-unix
       - /dev/dri:/dev/dri  # docker run -v /dev/dri:/dev/dri
       - ./:/workspaces/01_eg_00_python # mount current dir to ...
-    network_mode: host  # docker run --net=host
+    network_mode: host  # docker run --net=host -> no need to expose ports, easier development
     ipc: host  # docker run --ipc=host
     stdin_open: true  # docker run -i
     tty: true  # docker run -t
     user: "1000:1000"
-    # entrypoint: ["/bin/bash"]
-    entrypoint: ["./init_python.sh"]
+    entrypoint: ["/bin/bash"]
