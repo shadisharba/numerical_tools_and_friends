@@ -1,28 +1,32 @@
-#The base image for the container 
-FROM python:3.9-slim-buster 
-RUN apt update -qq && apt install -qq -y xvfb x11-apps
+ARG UV_VER=0.5.5
+ARG DEBIAN_VER=bookworm
 
-# Keeps Python from generating .pyc files in the container 
-ENV PYTHONDONTWRITEBYTECODE=1 
+FROM ghcr.io/astral-sh/uv:$UV_VER AS uv
+FROM mcr.microsoft.com/vscode/devcontainers/base:$DEBIAN_VER
 
-# Turns off buffering for easier container logging 
-ENV PYTHONUNBUFFERED=1 
+RUN sudo apt update -qq && sudo apt install -qq -y x11-apps
+SHELL ["/bin/bash", "-c"]
+USER vscode
 
-# Copy all files to the docker container and install
-WORKDIR /workspaces
-COPY . /workspaces
-RUN python -m pip install -r requirements.txt 
+ARG DEBIAN_FRONTEND=noninteractive
+ARG PYTHON_VER=3.13
+ARG UV_VENV="/home/vscode/.venv"
+ARG WORKING_DIR="/workspaces/01_eg_00_python/"
 
-# Creates a non-root user with an explicit UID and adds permission to access the /workspaces folder
-# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /workspaces
-USER appuser
+ENV UV_VENV=$UV_VENV
+ENV WORKING_DIR=$WORKING_DIR
 
-ENV DISPLAY="192.168.178.46:0"
-# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-# CMD ["python", "main.py"]
-CMD ["xeyes"]
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=True
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
 
-# ARG port
-# EXPOSE $PORT
-# --build-arg port=8060
+COPY --from=uv --chown=vscode: /uv /uvx /bin/
+RUN uv python install $PYTHON_VER
+RUN echo 'alias activate="source $UV_VENV/bin/activate"' >> ~/.bashrc
+
+COPY init_python.sh $WORKING_DIR
+WORKDIR $WORKING_DIR
+
+ENTRYPOINT ["./init_python.sh"]
+# ENTRYPOINT ["/bin/bash"]
