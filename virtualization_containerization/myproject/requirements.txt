@@ -1,5 +1,0 @@
-ipykernel
-jupyter
-jupyterlab
-notebook
-matplotlib
