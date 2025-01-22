@@ -1,38 +1,25 @@
-
 .env_local
 
 .idea
-
+.pytest_cache
 __pycache__
 
-.pytest_cache
-
 build/
-
-*.pdf
-
-.coverage
-
 reports/
-
+.coverage
 coverage-badge.svg
-
 coverage.xml
-
-TODO.md
-
-numerical_tours_of_data_sciences
-mathematical_tours_of_data_sciences
-data_swak/extract_transform_load_etl_elt/logs/
 
 *exclude*
 
+*.pdf
+*.png
 *.docx
-
+*.pptx
 *.zip
 
+numerical_tours_of_data_sciences
+mathematical_tours_of_data_sciences
 virtualization_containerization/docker_microservices/proxmox
 
-*.pptx
-
-*.png
+TODO.md
