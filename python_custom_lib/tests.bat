@@ -1,9 +1,9 @@
-python -m pytest python_library_demo_tests/operations_test.py::test_addition_of_two_negative_numbers
-python -m pytest python_library_demo_tests
+python -m pytest tests/operations_test.py::test_addition_of_two_negative_numbers
+python -m pytest tests
 python -m pytest -m group1
-python -m pytest python_library_demo_tests/mocking_test.py -s
+python -m pytest tests/mocking_test.py -s
 
-@REM When you run pytest alone, Python uses the system’s PATH environment variable to find the pytest executable. If your Python script or module is not in a directory listed in PATH, or if there’s a problem with your Python environment, Python might not be able to locate the necessary libraries, leading to the No module named 'python_library_demo' error.
+@REM When you run pytest alone, Python uses the system’s PATH environment variable to find the pytest executable. If your Python script or module is not in a directory listed in PATH, or if there’s a problem with your Python environment, Python might not be able to locate the necessary libraries, leading to the No module named 'src' error.
 
 @REM On the other hand, python -m pytest tells Python to run the pytest module as a script. The -m option allows the script to be located using Python’s sys.path module search path, which includes the current directory. This is why python -m pytest can find the necessary libraries even if pytest alone cannot.
 

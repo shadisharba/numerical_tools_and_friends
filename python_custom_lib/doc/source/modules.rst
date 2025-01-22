@@ -1,7 +1,7 @@
-python_library_demo
+src
 ===================
 
-This page lists all the modules and submodules in the `python_library_demo/` directory.
+This page lists all the modules and submodules in the `src/` directory.
 
 .. figure:: images/package.png
    :alt: open package

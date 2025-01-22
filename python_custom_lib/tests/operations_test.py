@@ -1,5 +1,5 @@
 import pytest
-from python_library_demo import operations
+from src import operations
 
 
 def test_addition_of_two_positive_numbers():

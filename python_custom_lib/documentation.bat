@@ -1,0 +1,1 @@
+doc\make.bat clean && doc\make.bat html
