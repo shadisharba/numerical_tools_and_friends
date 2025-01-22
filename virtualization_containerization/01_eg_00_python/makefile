@@ -16,9 +16,10 @@ compose_exec:
 # to be used in the container
 test_gui:
 	echo $(DISPLAY) && xeyes
-run_jupyter:
-	$(activate) && jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --allow-root
-github_actions:
+test_jupyter:
+	# activate environment before running jupyter
+	jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --allow-root
+test_github_actions:
 	curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | bash
 	./bin/act --action-offline-mode -l
 	./bin/act --action-offline-mode --graph
