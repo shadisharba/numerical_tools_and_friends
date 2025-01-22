@@ -13,6 +13,7 @@ compose_up:
 	docker compose up
 compose_exec:
 	docker compose exec $(DOCKER_SERVICE) bash
+# to be used in the container
 test_gui:
 	echo $(DISPLAY) && xeyes
 run_jupyter:
