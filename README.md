@@ -1,7 +1,7 @@
 # Numerical tools and friends
 
 ![Static Badge](https://img.shields.io/badge/py-3.11-blue)
-[![CI/CD Tests](https://github.com/shadisharba/numerical_tools_and_friends/actions/workflows/python-package-conda.yml/badge.svg)](https://github.com/shadisharba/numerical_tools_and_friends/actions/workflows/python-package-conda.yml)
+<!-- [![CI/CD Tests](https://github.com/shadisharba/numerical_tools_and_friends/actions/workflows/python-package-conda.yml/badge.svg)](https://github.com/shadisharba/numerical_tools_and_friends/actions/workflows/python-package-conda.yml) -->
 [![codecov](https://codecov.io/gh/shadisharba/numerical_tools_and_friends/branch/main/graph/badge.svg)](https://codecov.io/gh/shadisharba/numerical_tools_and_friends)
 [![GitHub stars](https://img.shields.io/github/stars/shadisharba/numerical_tools_and_friends.svg)](https://github.com/shadisharba/numerical_tools_and_friends/stargazers)
 
@@ -34,7 +34,7 @@ Demo scripts include but not limited to:
 - Support vector machines (SVMs)
 - K-means and GaussianMixture clustering
 
-## Machine learning 
+## Machine learning
 Demo scripts include but not limited to:
 - [MLflow](https://mlflow.org/)
 
@@ -253,4 +253,3 @@ rm -rf fem/homogenization/cm3data
 git clone https://gitlab.onelab.info/cm3/cm3Data.git fem/homogenization/cm3data
 echo fem/homogenization/cm3data>>.gitignore
 ```
-
