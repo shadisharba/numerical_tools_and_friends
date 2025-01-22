@@ -1,5 +1,5 @@
-ARG UV_VER=0.5.5
-ARG DEBIAN_VER=bookworm
+ARG UV_VER=latest
+ARG DEBIAN_VER=latest
 
 FROM ghcr.io/astral-sh/uv:$UV_VER AS uv
 FROM mcr.microsoft.com/vscode/devcontainers/base:$DEBIAN_VER
@@ -25,10 +25,8 @@ RUN sudo apt update -qq && sudo apt install -qq -y x11-apps
 RUN uv python install $PYTHON_VER
 RUN uv venv $VIRTUAL_ENV
 
-COPY init_python* /
 COPY requirements.txt /
-RUN ./init_python_dep.sh
-
+RUN $activate && uv pip install -r requirements.txt
 WORKDIR $WORKING_DIR
 
 ENTRYPOINT ["/bin/bash"]
