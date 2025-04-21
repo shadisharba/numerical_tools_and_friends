@@ -1,5 +1,0 @@
-arithmetic
-cli_argparse
-operations
-python_package
-python_sample_module

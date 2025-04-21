@@ -1,6 +1,0 @@
-# instead of pytest.ini
-[tool.pytest.ini_options]
-testpaths = "tests"
-markers = [
-    "group1: description of group 1"
-]
