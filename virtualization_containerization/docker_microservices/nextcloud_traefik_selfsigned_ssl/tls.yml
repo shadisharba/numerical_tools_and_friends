@@ -1,6 +1,11 @@
 tls:
   stores:
-    default:
+    - default:
       defaultCertificate:
-        certFile: /etc/certs/local-cert.pem
-        keyFile: /etc/certs/local-key.pem
+        certFile: ./exclude_openssl_tls/cert.pem
+        keyFile: ./exclude_openssl_tls/key.pem
+  certificates:
+    - certFile: ./exclude_openssl_tls/cert.pem
+      keyFile: ./exclude_openssl_tls/key.pem
+      stores:
+      - default

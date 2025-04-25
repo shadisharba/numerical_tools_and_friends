@@ -1,14 +1,5 @@
 .env_local
-
-.idea
-.pytest_cache
 __pycache__
-
-build/
-reports/
-.coverage
-coverage-badge.svg
-coverage.xml
 
 *exclude*
 
@@ -20,6 +11,3 @@ coverage.xml
 
 numerical_tours_of_data_sciences
 mathematical_tours_of_data_sciences
-virtualization_containerization/docker_microservices/proxmox
-
-TODO.md
