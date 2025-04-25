@@ -9,5 +9,6 @@ __pycache__
 *.pptx
 *.zip
 
+numerical_recipes_src
 numerical_tours_of_data_sciences
 mathematical_tours_of_data_sciences

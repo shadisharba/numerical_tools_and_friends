@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+# dokuwiki1
+    dokuwiki:
+      image: linuxserver/dokuwiki
+      container_name: dokuwiki
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Europe/London
+      volumes:
+        - ./datafolder:/config
+      ports:
+        - 8081:80
+      #   - 443:443 #optional
+      restart: unless-stopped
